@@ -12,6 +12,7 @@ const title = isDashboard
   : isWrapped
     ? 'How I <span>Prompt</span> <span class="header-subtitle">| Wrapped</span>'
     : 'How I <span>Prompt</span> <span class="header-subtitle">| Linguistics</span>';
+const base = import.meta.env.BASE_URL;
 ---
 <header class="header">
   <div class="header-left">
@@ -21,19 +22,19 @@ const title = isDashboard
   <div class="header-right">
     <!-- Primary nav -->
     {!isDashboard && (
-      <a href="/" class={`accent-link dashboard-link ${!isWrapped && !isLinguistics ? 'is-current' : ''}`}>
+      <a href={base} class={`accent-link dashboard-link ${!isWrapped && !isLinguistics ? 'is-current' : ''}`}>
         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
         Dashboard
       </a>
     )}
     {!isWrapped && !isLinguistics && (
-      <a href="/wrapped" id="wrappedLink" class={`accent-link wrapped-link ${isDashboard ? '' : 'header-nav-item'}`} title="Wrapped">
+      <a href={`${base}wrapped`} id="wrappedLink" class={`accent-link wrapped-link ${isDashboard ? '' : 'header-nav-item'}`} title="Wrapped">
         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
         <span class="wrapped-link-text">Wrapped</span>
       </a>
     )}
     {enableLinguistics && !isLinguistics && (
-      <a href="/linguistics" class="nav-link header-nav-item">
+      <a href={`${base}linguistics`} class="nav-link header-nav-item">
         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 12h5M8 17h8M5 7h.01M5 12h.01M5 17h.01"/></svg>
         Linguistics
       </a>
@@ -58,9 +59,9 @@ const title = isDashboard
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
-  {!isDashboard && <a href="/" class="mobile-menu-item" onclick="closeMobileMenu()">Dashboard</a>}
-  {!isWrapped && <a href="/wrapped" class="mobile-menu-item" onclick="closeMobileMenu()">Wrapped</a>}
-  {enableLinguistics && !isLinguistics && <a href="/linguistics" class="mobile-menu-item" onclick="closeMobileMenu()">Linguistics</a>}
+  {!isDashboard && <a href={base} class="mobile-menu-item" onclick="closeMobileMenu()">Dashboard</a>}
+  {!isWrapped && <a href={`${base}wrapped`} class="mobile-menu-item" onclick="closeMobileMenu()">Wrapped</a>}
+  {enableLinguistics && !isLinguistics && <a href={`${base}linguistics`} class="mobile-menu-item" onclick="closeMobileMenu()">Linguistics</a>}
   <button class="mobile-menu-item" onclick="openCreateModal();closeMobileMenu()">
     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l-3 3 3 3m8-6l3 3-3 3M14 4l-4 16"/></svg>
     Create Your Own
