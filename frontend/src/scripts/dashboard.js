@@ -1385,7 +1385,7 @@ async function initWizard() {
     // Check if metrics.json exists — if it does, no wizard needed
     let hasMetrics = false;
     try {
-        const metricsRes = await fetch('/metrics.json');
+        const metricsRes = await fetch('./metrics.json');
         hasMetrics = metricsRes.ok;
     } catch { /* no metrics */ }
 
@@ -1701,7 +1701,7 @@ async function init() {
         .catch(() => {});
 
     try {
-        const response = await fetch('/metrics.json');
+        const response = await fetch('./metrics.json');
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const metrics = await response.json();
 
