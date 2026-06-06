@@ -47,6 +47,7 @@ jobs:
         run: npm run build
         working-directory: frontend
         env:
+          ASTRO_BASE: /howiprompt/
           PUBLIC_ENABLE_ANALYTICS: "true"
           PUBLIC_ENABLE_LINGUISTICS: ""
           PUBLIC_POSTHOG_KEY: phc_zfue5Ca8VaxypRHPCi9j2h2R3Qy1eytEHt3TMPWlOOS
