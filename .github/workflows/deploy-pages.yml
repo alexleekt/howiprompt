@@ -1,0 +1,79 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install frontend dependencies
+        run: cd frontend && npm ci
+
+      - name: Run unit tests
+        continue-on-error: true
+        run: npm test
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: frontend
+        env:
+          PUBLIC_ENABLE_ANALYTICS: "true"
+          PUBLIC_ENABLE_LINGUISTICS: ""
+          PUBLIC_POSTHOG_KEY: phc_zfue5Ca8VaxypRHPCi9j2h2R3Qy1eytEHt3TMPWlOOS
+          PUBLIC_POSTHOG_HOST: https://api-v2.eeshans.com
+          PUBLIC_POSTHOG_UI_HOST: https://us.posthog.com
+
+      - name: Copy demo data into build output
+        run: |
+          cp data/demo/metrics.json frontend/dist/metrics.json
+          mkdir -p frontend/dist/wrapped
+          cp data/demo/metrics.json frontend/dist/wrapped/metrics.json
+
+      - name: Build static site for Pages
+        run: |
+          rm -rf dist-static
+          mkdir -p dist-static
+          cp -r frontend/dist/* dist-static/
+          touch dist-static/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist-static
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -4,7 +4,7 @@ const pagesGuideUrl = 'https://docs.github.com/en/pages/quickstart';
 const runCommand = 'npx @eeshans/howiprompt';
 const cloneCommand = 'git clone https://github.com/eeshansrivastava89/howiprompt.git';
 const devCliCommand = 'cd howiprompt && npm install && npm run dev:cli';
-const buildDemoCommand = 'cd howiprompt/frontend && DEMO_DEPLOY=true npm run build';
+const buildDemoCommand = 'npm run publish';
 ---
 
 <div class="modal-overlay" id="createModal" role="dialog" aria-modal="true" aria-labelledby="createTitle">
@@ -93,7 +93,7 @@ const buildDemoCommand = 'cd howiprompt/frontend && DEMO_DEPLOY=true npm run bui
           </div>
         </div>
 
-        <p class="create-hosted-note">Then commit and push `docs/`, and enable GitHub Pages from `main` / `docs`. <a href={pagesGuideUrl} target="_blank" rel="noreferrer">Setup guide</a></p>
+        <p class="create-hosted-note">Then commit <code>data/demo/</code> and push to <code>main</code>. GitHub Actions deploys automatically. <a href={pagesGuideUrl} target="_blank" rel="noreferrer">Setup guide</a></p>
       </section>
     </div>
 

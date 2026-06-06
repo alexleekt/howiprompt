@@ -72,10 +72,12 @@ If you want to publish your own stats as a static site:
 ```bash
 git clone https://github.com/eeshansrivastava89/howiprompt.git
 cd howiprompt && npm install && npm run dev:cli
-cd frontend && DEMO_DEPLOY=true npm run build
+npm run publish
 ```
 
-Then commit and push `docs/`, and enable GitHub Pages from `main` / `docs` in your repo settings.
+Then commit `data/demo/metrics.json` and push to `main`. GitHub Actions deploys the site automatically from `dist-static/`.
+
+Enable GitHub Pages in your repo settings and set the source to **GitHub Actions**.
 
 ---
 
@@ -149,16 +151,13 @@ npm test
 # Rebuild package assets, then launch the CLI locally
 npm run dev:cli
 
-# Build frontend
-cd frontend && npm run build
-
-# Build the hosted demo from ~/.howiprompt/metrics.json
-cd frontend && DEMO_DEPLOY=true npm run build
+# Build the hosted demo site
+npm run publish
 
 # Build for distribution
 npm run build:cli
 
-# Privacy gate (run before publish)
+# Privacy gate (run before npm publish)
 npm run check:privacy
 ```
 

@@ -48,6 +48,7 @@
     "test:watch": "vitest",
     "dev:cli": "npm run build:cli && node bin/cli.mjs",
     "build:cli": "node scripts/build-cli.mjs",
+    "publish": "node scripts/publish.mjs",
     "check:privacy": "node scripts/privacy-gate.mjs",
     "prepack": "node scripts/build-cli.mjs && node scripts/privacy-gate.mjs"
   },

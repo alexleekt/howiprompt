@@ -37,6 +37,12 @@ frontend/node_modules/
 frontend/dist/
 frontend/.astro/
 
+# Demo site build output (deployed via GitHub Actions)
+dist-static/
+
+# Legacy docs site (kept for transition; deployed via GitHub Actions now)
+docs/
+
 # Node.js
 node_modules/
 dist/
