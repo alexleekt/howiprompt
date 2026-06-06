@@ -33,10 +33,10 @@ function formatCompact(value) {
 // === Player card ===
 
 const CARD_IMAGES = {
-    'The Architect': '/images/card_architect.png',
-    'The Explorer': '/images/card_explorer.png',
-    'The Commander': '/images/card_commander.png',
-    'The Partner': '/images/card_partner.png',
+    'The Architect': './images/card_architect.png',
+    'The Explorer': './images/card_explorer.png',
+    'The Commander': './images/card_commander.png',
+    'The Partner': './images/card_partner.png',
 };
 
 const DONUT_CIRCUMFERENCE = 125.66;

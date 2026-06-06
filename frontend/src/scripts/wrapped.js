@@ -533,10 +533,10 @@ function hydrateWrapped(m) {
 
     // Section 5: Persona Reveal (2×2 quadrant system)
     const QUADRANT_IMAGES = {
-        'The Architect': '/images/char_architect.png',
-        'The Explorer': '/images/char_explorer.png',
-        'The Commander': '/images/char_commander.png',
-        'The Partner': '/images/char_partner.png',
+        'The Architect': './images/char_architect.png',
+        'The Explorer': './images/char_explorer.png',
+        'The Commander': './images/char_commander.png',
+        'The Partner': './images/char_partner.png',
     };
 
     const cardTop = el('wrappedCardTop');
